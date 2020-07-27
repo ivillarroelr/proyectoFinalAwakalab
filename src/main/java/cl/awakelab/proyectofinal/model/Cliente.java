@@ -27,6 +27,9 @@ public class Cliente {
     @OneToMany(mappedBy="cliente", cascade = { CascadeType.ALL }, orphanRemoval = true)
     private Set<Actividad> actividades = new HashSet<Actividad>();
 
+    @OneToMany(mappedBy="cliente", cascade = { CascadeType.ALL }, orphanRemoval = true)
+    private Set<Accidente> accidentes = new HashSet<Accidente>();
+
     @OneToOne
     @MapsId
     private Users usuario;
@@ -72,5 +75,13 @@ public class Cliente {
         this.username = username;
     }
 
+    public Set<Accidente> getAccidentes() {
+        return accidentes;
+    }
 
+    public void setAccidentes(Set<Accidente> accidentes) {
+        this.accidentes = accidentes;
+    }
+
+    
 }

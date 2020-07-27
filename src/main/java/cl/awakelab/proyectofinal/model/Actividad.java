@@ -18,8 +18,11 @@ public class Actividad {
 	private int idActividad;
 	
 	@Column(name = "fecha", nullable = true)
-	private LocalDateTime fechaVisita;
-	
+	private LocalDateTime fechaActividad;
+    
+    @Column(name = "hora", nullable = true)
+	private String hora;
+
 	@Column(name = "descripcion", nullable = true)
     private String descripcion;
     
@@ -37,14 +40,6 @@ public class Actividad {
 
     public void setIdActividad(int idActividad) {
         this.idActividad = idActividad;
-    }
-
-    public LocalDateTime getFechaVisita() {
-        return fechaVisita;
-    }
-
-    public void setFechaVisita(LocalDateTime fechaVisita) {
-        this.fechaVisita = fechaVisita;
     }
 
     public String getDescripcion() {
@@ -71,6 +66,20 @@ public class Actividad {
         this.profesional = profesional;
     }
 
-    
+    public LocalDateTime getFechaActividad() {
+        return fechaActividad;
+    }
+
+    public void setFechaActividad(LocalDateTime fechaActividad) {
+        this.fechaActividad = fechaActividad;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
 
 }
