@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/header :: head">
+</head>
+
+<body>
+  
+    <div class="d-flex" id="wrapper"></div>
+
+    <!-- Sidebar -->
+    <div th:replace="/fragments/sidebara :: div">
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        
+      <!-- Navbar -->
+      <nav th:replace="/fragments/navbar :: nav">
+      </nav>
+
+      <div class="container-fluid"> <!-- BODY LOL -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">VER USUARIO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/nuevousuario}">NUEVO USUARIO</a>
+            </li>
+        </ul>   
+          
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th> Rut </th>
+                    <th> Nombre </th>
+                    <th> Apellido </th>
+                    <th> Especialidad </th>
+                    <th> Telefono </th>
+                    <th> Editar </th>
+                    <th> Eliminar </th>
+                </tr>
+            </thead>
+            <tbody>
+          <tr th:if="${medicos.empty}">
+                    <td colspan="7"> No hay medicos registrados </td>
+                </tr>
+                <tr th:each="medico : ${medicos}">
+                    <td><span th:text="${medico.getRut()}"></span></td>
+                    <td><span th:text="${medico.getNombre()}"></span></td>
+                    <td><span th:text="${medico.getApellido()}"></span></td>
+                    <td><span th:text="${medico.getEspecialidad().getIdEspecialidad()}"></span></td>
+                    <td><span th:text="${medico.getTelefono()}"></span></td>
+                    <td><a class="btn btn-warning" role="button">Editar</a></td>
+                    <td>
+                      <form action="#" th:action="@{'/borrarusuario/{rut}'(rut=${usuario.getRut()})}" th:method="delete" >
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                      </form>
+                  </td>
+                  
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+ </form> 
+
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{js/jquery.min.js}"></script>
+  <script th:src="@{js/bootstrap.min.js}"></script>
+  <script th:src="@{js/custom.js}"></script>
+
+</body>
+</html>
