@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/header :: head">
+</head>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/fragments/sidebarc :: div">
+    </div>
+
+    <!-- Contenido -->
+    <div id="page-content-wrapper">
+        
+      <!-- Navbar -->
+      <nav th:replace="/fragments/navbar :: nav">
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Evaluación Final</h1>
+        <p>Informacion relacionada al proyecto</p>
+        <table class="table table-sm table-hover">
+            <tr>
+              <td>Desarrollador Frontend</td>
+              <td>Cristian Escamilla</td>
+            </tr>
+            <tr>
+              <td>Desarrollador Frontend</td>
+              <td>Juan Gonzalez</td>
+            </tr>
+            <tr>
+              <td>Desarrollador Backend</td>
+              <td>Katherine Ramos</td>
+            </tr>
+            <tr>
+              <td>Desarrollador Backend</td>
+              <td>Ivan Villarroel</td>
+            </tr>       
+        </table>
+        <h3>Aseguradora de Riesgos Laborales</h3>
+            </div>
+
+  </div>
+  <!-- Logout form -->
+  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+ </form> 
+  <!-- Archivos JavaScript -->
+  <script th:src="@{js/jquery-1.11.1.min.js}"></script>
+  <script th:src="@{js/bootstrap.min.js}"></script>
+  <script th:src="@{js/custom.js}"></script>
+</body>
+</html>
