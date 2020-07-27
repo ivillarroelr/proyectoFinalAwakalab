@@ -26,6 +26,9 @@ public class Users {
     @Column
     private String apellido;
 
+    @Column
+    private String tipoUsuario;
+
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Cliente cliente;
 
@@ -106,6 +109,14 @@ public class Users {
 
     public void setProfesional(Profesional profesional) {
         this.profesional = profesional;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     
