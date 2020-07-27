@@ -12,49 +12,44 @@
 
     <!-- Contenido -->
     <div id="page-content-wrapper">
-        
-      <!-- Navbar -->
-      <nav th:replace="/fragments/navbar :: nav">
-      </nav>
 
-      <div class="container-fluid">
-        <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
+        <!-- Navbar -->
+        <nav th:replace="/fragments/navbar :: nav">
+        </nav>
+
+        <div class="container-fluid">
+            <h1 class="mt-4">VERPROFESIONAL</h1>
+            <p>Informacion relacionada al proyecto</p>
+            <table class="table table-sm table-hover">
                 <tr>
-                    <th> Rut </th>
-                    <th> Nombre </th>
-                    <th> Apellido </th>
+                    <td>Desarrollador Frontend</td>
+                    <td>Cristian Escamilla</td>
                 </tr>
-            </thead>
-            <tbody>
-          <tr th:if="${users.empty}">
-                    <td colspan="7"> No hay profesionales registrados </td>
+                <tr>
+                    <td>Desarrollador Frontend</td>
+                    <td>Juan Gonzalez</td>
                 </tr>
-                <tr th:each="user : ${users}">
-                    <td><span th:text="${user.getRut()}"></span></td>
-                    <td><span th:text="${user.getNombre()}"></span></td>
-                    <td><span th:text="${user.getApellido()}"></span></td>
-                    <td><a class="btn btn-warning" role="button">Editar</a></td>
-                    <td>
-                      <form action="#" th:action="@{'/borraruser/{rut}'(rut=${user.getRut()})}" th:method="delete" >
-                        <input type="hidden" name="_method" value="delete" />
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                      </form>
-                  </td>
-                  
+                <tr>
+                    <td>Desarrollador Backend</td>
+                    <td>Katherine Ramos</td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
+                <tr>
+                    <td>Desarrollador Backend</td>
+                    <td>Ivan Villarroel</td>
+                </tr>
+            </table>
+            <h3>Aseguradora de Riesgos Laborales</h3>
+        </div>
 
-  </div>
-  <!-- Logout form -->
-  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-    <input hidden type="submit" value="Sign Out"/>
- </form> 
-  <!-- Archivos JavaScript -->
-  <script th:src="@{js/jquery-1.11.1.min.js}"></script>
-  <script th:src="@{js/bootstrap.min.js}"></script>
-  <script th:src="@{js/custom.js}"></script>
-</body>
+    </div>
+    <!-- Logout form -->
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out"/>
+    </form>
+    <!-- Archivos JavaScript -->
+    <script th:src="@{js/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{js/custom.js}"></script>
+
+    </body>
 </html>
