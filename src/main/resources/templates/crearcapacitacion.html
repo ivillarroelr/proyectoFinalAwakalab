@@ -1,0 +1,77 @@
+  
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/header :: head">
+</head>
+
+<body>
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/fragments/sidebarp :: div">
+    </div>
+    
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        
+      <!-- Navbar -->
+      <nav th:replace="/fragments/navbar :: nav">
+      </nav>
+
+      <div class="container-fluid"> <!-- CONTAINER CRUD -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link " th:href="@{/capacitacion}">VER CAPACITACIONES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active">CREAR CAPACITACIÓN</a>
+            </li>
+          </ul>    
+      <div class="container">
+        <div class="row mt-5">
+        <div class="col col-md-1"></div>
+        <div class="col col-md-10">
+          <form method="post" th:action="@{/capacitacion}">
+            <div class="form-group">
+                <label for="idCliente">Seleccione el Cliente</label>
+                <select class="form-control" id="idCliente" name="idCliente">
+                  <option th:each="cliente : ${cliente}"
+                          th:value="${cliente.getIdCliente()}"
+                          th:text="${cliente.getNombre()}"></option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="fechaAtencion">Escoja una fecha de atención:</label>
+
+                <input type="datetime-local" id="fechaAtencion"
+                       name="fechaAtencion">
+            </div>
+            <div class="form-group">
+                <label for="fechaAtencion">Escoja una hora de atención:</label>
+
+                <input type="datetime-local" id="horaAtencion"
+                       name="horaAtencion">
+            </div>
+            <button type="submit" class="btn btn-lg btn-success mt-3">Enviar</button>
+          </form>
+        </div>
+        <div class="col col-md-1"></div>
+      </div>
+      </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+ </form> 
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{js/jquery.min.js}"></script>
+  <script th:src="@{js/bootstrap.min.js}"></script>
+  <script th:src="@{js/sweetalert2.js}"></script>
+  <script th:src="@{js/custom.js}"></script>
+</body>
+</html>

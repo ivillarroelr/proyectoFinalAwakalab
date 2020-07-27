@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/header :: head">
+</head>
+
+<body>
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/fragments/sidebarp :: div">
+    </div>
+    
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        
+      <!-- Navbar -->
+      <nav th:replace="/fragments/navbar :: nav">
+      </nav>
+
+      <div class="container-fluid"> <!-- BODY CONTAINER -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">VER CAPACITACIONES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/indexprofesional}">CREAR CAPACITACIÓN</a>
+            </li>
+        </ul>   
+          
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th> ID Capacitación </th>
+                    <th> Fecha Capacitación </th>
+                    <th> Hora Capacitación </th>
+                    <th> Nombre Cliente </th>
+                    <th> Descripción </th>
+                </tr>
+            </thead>
+            <tbody>
+          <tr th:if="${actividad.empty}">
+                    <td colspan="8"> No hay capacitaciones registradas </td>
+                </tr>
+                <tr th:each="actividad : ${actividad}">
+                    <td><span th:text="${actividad.getIdActividad()}"></span></td>
+                    <td><span th:text="${actividad.getHoraCapacitacion()}"></span></td>
+                    <td><span th:text="${actividad.getFechaActividad()}"></span></td>
+                    <td><span th:text="${actividad.getCliente().getNombre()}"></span></td>
+                    <td><span th:text="${actividad.getDescripcion()}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+ </form> 
+
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{js/jquery.min.js}"></script>
+  <script th:src="@{js/bootstrap.min.js}"></script>
+  <script th:src="@{js/sweetalert2.js}"></script>
+  <script th:src="@{js/custom.js}"></script>
+
+</body>
+</html>
