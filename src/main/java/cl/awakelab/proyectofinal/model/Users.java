@@ -17,10 +17,19 @@ public class Users {
     @Column
     private Boolean enabled;
 
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    @Column
+    private String rut;
+
+    @Column
+    private String nombre;
+
+    @Column
+    private String apellido;
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Cliente cliente;
 
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Profesional profesional;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -58,4 +67,46 @@ public class Users {
     public void setAuthority(Set<Authority> authority) {
         this.authority = authority;
     }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Profesional getProfesional() {
+        return profesional;
+    }
+
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
+    }
+
+    
 }
