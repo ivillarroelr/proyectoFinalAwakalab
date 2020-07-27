@@ -1,6 +1,9 @@
 body{
     background-color: #f1f7fc;
-    padding-top:20px;
+}
+
+#pad {
+  padding-top:20px;
 }
 
  #wrapper {
