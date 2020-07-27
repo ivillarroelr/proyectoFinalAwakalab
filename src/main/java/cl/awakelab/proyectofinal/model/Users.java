@@ -1,6 +1,7 @@
 package cl.awakelab.proyectofinal.model;
 
 import javax.persistence.*;
+
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,12 @@ public class Users {
 
     @Column
     private Boolean enabled;
+
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    private Cliente cliente;
+
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    private Profesional profesional;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "id_authority"))
