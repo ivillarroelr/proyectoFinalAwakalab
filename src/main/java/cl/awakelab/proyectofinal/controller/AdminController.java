@@ -34,8 +34,8 @@ public class AdminController {
     @GetMapping({"/verprofesional"})
     public ModelAndView verprofesional() {
         ModelAndView model = new ModelAndView();
-        List<Profesional> profesionales = new ArrayList<Profesional>();
-        profesionales = serviceProfesional.listar();
+        List<Users> profesionales = new ArrayList<Users>();
+        profesionales = serviceUsuario.listar();
         model.addObject("profesionales", profesionales);
         model.setViewName("verprofesional");
         return model;
@@ -56,7 +56,6 @@ public class AdminController {
     public ModelAndView crearProfesional(@ModelAttribute("profesional") UsersDTO profesional){
         ModelAndView model = new ModelAndView();
         Users pr = new Users();
-        Profesional pro = new Profesional();
         pr.setUsername(profesional.getUsername());
         pr.setApellido(profesional.getApellido());
         pr.setEnabled(profesional.getEnabled());
@@ -65,11 +64,8 @@ public class AdminController {
         pr.setRut(profesional.getRut());
         pr.setTipoUsuario(profesional.getTipoUsuario());
         serviceUsuario.registrar(pr);
-        pro.setUsername(profesional.getUsername());
-        System.out.println(profesional.getUsername());
-        serviceProfesional.registrar(pro);
-        List<Profesional> profesionales = new ArrayList<Profesional>();
-        profesionales = serviceProfesional.listar();
+        List<Users> profesionales = new ArrayList<Users>();
+        profesionales = serviceUsuario.listar();
         model.addObject("profesionales", profesionales);
         model.setViewName("verprofesional");
         return model;
