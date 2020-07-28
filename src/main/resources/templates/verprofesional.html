@@ -1,79 +1,66 @@
 <!DOCTYPE html>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="/fragments/header :: head">
 </head>
 
-<body>
 <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
     <div th:replace="/fragments/sidebara :: div">
     </div>
 
-    <!-- Page Content -->
+    <!-- Contenido -->
     <div id="page-content-wrapper">
 
         <!-- Navbar -->
         <nav th:replace="/fragments/navbar :: nav">
         </nav>
 
-        <div class="container-fluid"> <!-- BODY CONTAINER -->
+        <div class="container-fluid">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">VER VISITAS</a>
+                    <a class="nav-link active" th:href="@{/verprofesional}">VER PROFESIONALES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/indexprofesional}">PLANIFICAR VISITA</a>
+                    <a class="nav-link" th:href="@{/nuevoprofesional}">NUEVO PROFESIONAL</a>
                 </li>
             </ul>
 
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th> ID Visita </th>
-                    <th> Fecha Visita </th>
-                    <th> Hora Visita </th>
-                    <th> Nombre Cliente </th>
-                    <th> Descripción </th>
+                    <th> Nombre </th>
+                    <th> Apellido </th>
+                    <th> Rut </th>
+                    <th> Editar </th>
+                    <th> Eliminar </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${visitas.isEmpty()}">
-                    <td colspan="8"> No hay visitas registradas </td>
+                <tr th:if="${profesionales.isEmpty()}">
+                    <td colspan="8"> No hay profesionales registrados </td>
                 </tr>
-                <tr th:each="visita : ${visitas}">
-                    <td><span th:text="${visita.getIdVisita()}"></span></td>
-                    <td><span th:text="${visita.getHora()}"></span></td>
-                    <td><span th:text="${visita.getFecha()}"></span></td>
-                    <td><span th:text="${visita.getCliente().getUsuario().getNombre()}"></span></td>
-                    <td><span th:text="${visita.getDescripcion()}"></span></td>
+                <tr th:each="profesional : ${profesionales}">
+                    <td><span th:text="${profesional.getUsuario().getNombre()}"></span></td>
+                    <td><span th:text="${profesional.getUsuario().getApellido()}"></span></td>
+                    <td><span th:text="${profesional.getUsuario().getRut()}"></span></td>
+                    <td><a class="btn btn-warning" role="button">Editar</a></td>
+                    <td><a class="btn btn-danger" role="button">Eliminar</a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
     </div>
-    <!-- /#page-content-wrapper -->
+    <!-- Logout form -->
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out"/>
+    </form>
+    <!-- Archivos JavaScript -->
+    <script th:src="@{js/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script th:src="@{js/custom.js}"></script>
 
-</div>
-<!-- /#wrapper -->
-<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-    <input hidden type="submit" value="Sign Out"/>
-</form>
-
-<!-- Bootstrap core JavaScript -->
-<script th:src="@{js/jquery.min.js}"></script>
-<script th:src="@{js/bootstrap.min.js}"></script>
-<script th:src="@{js/sweetalert2.js}"></script>
-<script th:src="@{js/custom.js}"></script>
-
-</body>
+    </body>
 </html>
