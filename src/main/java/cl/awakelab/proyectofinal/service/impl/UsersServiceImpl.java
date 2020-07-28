@@ -1,7 +1,6 @@
 package cl.awakelab.proyectofinal.service.impl;
 
 import cl.awakelab.proyectofinal.model.Users;
-import cl.awakelab.proyectofinal.model.Visita;
 import cl.awakelab.proyectofinal.repo.IUsersRepo;
 import cl.awakelab.proyectofinal.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;

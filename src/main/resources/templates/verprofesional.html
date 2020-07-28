@@ -42,9 +42,9 @@
                     <td colspan="8"> No hay profesionales registrados </td>
                 </tr>
                 <tr th:each="profesional : ${profesionales}">
-                    <td><span th:text="${profesional.getNombre()}"></span></td>
-                    <td><span th:text="${profesional.getApellido()}"></span></td>
-                    <td><span th:text="${profesional.getRut()}"></span></td>
+                    <td><span th:text="${profesional.getUsuario().getNombre()}"></span></td>
+                    <td><span th:text="${profesional.getUsuario().getApellido()}"></span></td>
+                    <td><span th:text="${profesional.getUsuario().getRut()}"></span></td>
                     <td><a class="btn btn-warning" role="button">Editar</a></td>
                     <td><a class="btn btn-danger" role="button">Eliminar</a></td>
                 </tr>
