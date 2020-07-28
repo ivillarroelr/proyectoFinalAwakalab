@@ -22,3 +22,18 @@ INSERT INTO authorities_users(username, id_authority)
  VALUES('kramosl',1);
 INSERT INTO authorities_users(username, id_authority)
  VALUES('cristiane',1);
+
+ INSERT INTO users
+ VALUES('usuario','apellido', 'true', 'kathy', 'elefante', '18378858-2', 'admin');
+
+INSERT INTO users
+ VALUES('profesional','apellido2', 'true', 'manu', 'ironman', '18504304-8', 'admin');
+
+ INSERT INTO cliente
+ VALUES('usuario');
+
+ INSERT INTO profesional
+ VALUES('profesional');
+
+ INSERT INTO visita
+ VALUES(1,'visita1', '2016-06-22 19:10:25-07', '2016-06-22 19:10:25-07', 'usuario', 'profesional');

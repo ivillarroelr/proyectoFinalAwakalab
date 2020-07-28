@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-=======
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="/fragments/header :: head">
@@ -47,14 +47,14 @@
                 </tr>
             </thead>
             <tbody>
-          <tr th:if="${visita.empty}">
+          <tr th:if="${visitas.isEmpty()}">
                     <td colspan="8"> No hay visitas registradas </td>
                 </tr>
-                <tr th:each="visita : ${visita}">
+                <tr th:each="visita : ${visitas}">
                     <td><span th:text="${visita.getIdVisita()}"></span></td>
                     <td><span th:text="${visita.getHora()}"></span></td>
                     <td><span th:text="${visita.getFecha()}"></span></td>
-                    <td><span th:text="${visita.getCliente().getNombre()}"></span></td>
+                    <td><span th:text="${visita.getCliente().getUsuario().getNombre()}"></span></td>
                     <td><span th:text="${visita.getDescripcion()}"></span></td>
                 </tr>
             </tbody>
@@ -74,7 +74,6 @@
   <script th:src="@{js/bootstrap.min.js}"></script>
   <script th:src="@{js/sweetalert2.js}"></script>
   <script th:src="@{js/custom.js}"></script>
->>>>>>> ab9775f6c5d459226e7db91d5f2a49d3ddfbb8af
 
 </body>
 </html>

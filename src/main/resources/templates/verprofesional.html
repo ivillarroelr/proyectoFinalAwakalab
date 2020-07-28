@@ -1,55 +1,79 @@
 <!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="/fragments/header :: head">
 </head>
 
+<body>
 <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
     <div th:replace="/fragments/sidebara :: div">
     </div>
 
-    <!-- Contenido -->
+    <!-- Page Content -->
     <div id="page-content-wrapper">
 
         <!-- Navbar -->
         <nav th:replace="/fragments/navbar :: nav">
         </nav>
 
-        <div class="container-fluid">
-            <h1 class="mt-4">VERPROFESIONAL</h1>
-            <p>Informacion relacionada al proyecto</p>
-            <table class="table table-sm table-hover">
+        <div class="container-fluid"> <!-- BODY CONTAINER -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">VER VISITAS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/indexprofesional}">PLANIFICAR VISITA</a>
+                </li>
+            </ul>
+
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                 <tr>
-                    <td>Desarrollador Frontend</td>
-                    <td>Cristian Escamilla</td>
+                    <th> ID Visita </th>
+                    <th> Fecha Visita </th>
+                    <th> Hora Visita </th>
+                    <th> Nombre Cliente </th>
+                    <th> Descripción </th>
                 </tr>
-                <tr>
-                    <td>Desarrollador Frontend</td>
-                    <td>Juan Gonzalez</td>
+                </thead>
+                <tbody>
+                <tr th:if="${visitas.isEmpty()}">
+                    <td colspan="8"> No hay visitas registradas </td>
                 </tr>
-                <tr>
-                    <td>Desarrollador Backend</td>
-                    <td>Katherine Ramos</td>
+                <tr th:each="visita : ${visitas}">
+                    <td><span th:text="${visita.getIdVisita()}"></span></td>
+                    <td><span th:text="${visita.getHora()}"></span></td>
+                    <td><span th:text="${visita.getFecha()}"></span></td>
+                    <td><span th:text="${visita.getCliente().getUsuario().getNombre()}"></span></td>
+                    <td><span th:text="${visita.getDescripcion()}"></span></td>
                 </tr>
-                <tr>
-                    <td>Desarrollador Backend</td>
-                    <td>Ivan Villarroel</td>
-                </tr>
+                </tbody>
             </table>
-            <h3>Aseguradora de Riesgos Laborales</h3>
         </div>
-
     </div>
-    <!-- Logout form -->
-    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-        <input hidden type="submit" value="Sign Out"/>
-    </form>
-    <!-- Archivos JavaScript -->
-    <script th:src="@{js/jquery-1.11.1.min.js}"></script>
-    <script th:src="@{js/bootstrap.min.js}"></script>
-    <script th:src="@{js/custom.js}"></script>
+    <!-- /#page-content-wrapper -->
 
-    </body>
+</div>
+<!-- /#wrapper -->
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+</form>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{js/jquery.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/sweetalert2.js}"></script>
+<script th:src="@{js/custom.js}"></script>
+
+</body>
 </html>
