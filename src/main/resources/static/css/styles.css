@@ -2,8 +2,13 @@ body{
     background-color: #f1f7fc;
 }
 
-#pad {
-  padding-top:20px;
+.row {
+  align-items: center;
+  justify-content: center;
+}
+
+#titul{
+  align-items: center;
 }
 
  #wrapper {
