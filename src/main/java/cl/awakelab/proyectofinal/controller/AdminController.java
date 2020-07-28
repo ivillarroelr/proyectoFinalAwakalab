@@ -45,8 +45,8 @@ public class AdminController {
     @GetMapping("/nuevoprofesional")
     public ModelAndView nuevoprofesional(){
         ModelAndView model = new ModelAndView();
-        List<Profesional> profesionales = new ArrayList<Profesional>();
-        profesionales = serviceProfesional.listar();
+        List<Users> profesionales = new ArrayList<Users>();
+        profesionales = serviceUsuario.listar();
         model.addObject("profesionales", profesionales);
         model.setViewName("nuevoprofesional");
         return model;

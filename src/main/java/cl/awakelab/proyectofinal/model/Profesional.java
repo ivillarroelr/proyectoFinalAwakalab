@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="profesional")
-public class Profesional {
+public class Profesional{
 
 	@Id
 	private String username;
