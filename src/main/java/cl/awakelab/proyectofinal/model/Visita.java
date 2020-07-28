@@ -31,7 +31,9 @@ public class Visita {
     @JoinColumn(name="profesional", nullable=false, foreignKey = @ForeignKey(name="FK_actividad_profesional"))
     private Profesional profesional;
 	
-	
+	@Column(name = "hora", nullable = true)
+	private String hora;
+
 	public Visita() {
 		super();
 	}
@@ -88,6 +90,14 @@ public class Visita {
 
 	public void setProfesional(Profesional profesional) {
 		this.profesional = profesional;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 	
