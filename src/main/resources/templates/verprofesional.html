@@ -45,8 +45,11 @@
                     <td><span th:text="${profesional.getUsuario().getNombre()}"></span></td>
                     <td><span th:text="${profesional.getUsuario().getApellido()}"></span></td>
                     <td><span th:text="${profesional.getUsuario().getRut()}"></span></td>
-                    <td><a class="btn btn-warning" role="button">Editar</a></td>
-                    <td><a class="btn btn-danger" role="button">Eliminar</a></td>
+                    <td><a class="btn btn-warning" role="button" th:href="@{/editar/{username}(username=${profesional.getUsuario().getUsername()})}">Editar</a></td>
+                    <td><form th:method="delete" action="#" th:action="@{'/borrarprofesional/{username}'(username=${profesional.getUsuario().getUsername()})}">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form></td>
                 </tr>
                 </tbody>
             </table>

@@ -9,11 +9,11 @@ import cl.awakelab.proyectofinal.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +95,31 @@ public class AdminController {
     @GetMapping({"/actividad"})
     public String veractividad() {
         return "actividad";
+    }
+
+    @GetMapping("/editar/{username}")
+    public String editarProfesional(@PathVariable("username") String username, Model model){
+        Users usuario = serviceUsuario.leerPorUsername(username);
+        model.addAttribute("usuario", usuario);
+        return "editarprofesional";
+    }
+
+    @PostMapping("/editarprofesional/{username}")
+    public String updateProfesional(@PathVariable("username") String username, @Valid Users usuario,
+                             BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            usuario.setUsername(username);
+            return "redirect:/verprofesional";
+        }
+        serviceUsuario.modificar(usuario);
+        model.addAttribute("profesionales", serviceProfesional.listar());
+        return "redirect:/index";
+    }
+
+    @DeleteMapping("/borrarprofesional/{username}")
+    public String eliminarProfesional(@PathVariable("username") String username){
+        serviceUsuario.eliminar(username);
+        return "redirect:/verprofesional";
     }
 
 }
