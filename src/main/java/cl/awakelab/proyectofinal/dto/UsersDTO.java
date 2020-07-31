@@ -1,6 +1,5 @@
 package cl.awakelab.proyectofinal.dto;
 
-import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Objects;
 

@@ -1,13 +1,10 @@
 package cl.awakelab.proyectofinal.controller;
 
+import cl.awakelab.proyectofinal.dto.PagoDTO;
 import cl.awakelab.proyectofinal.dto.ProfesionalDTO;
 import cl.awakelab.proyectofinal.dto.UsersDTO;
-import cl.awakelab.proyectofinal.model.Cliente;
-import cl.awakelab.proyectofinal.model.Profesional;
-import cl.awakelab.proyectofinal.model.Users;
-import cl.awakelab.proyectofinal.service.IClienteService;
-import cl.awakelab.proyectofinal.service.IProfesionalService;
-import cl.awakelab.proyectofinal.service.IUsersService;
+import cl.awakelab.proyectofinal.model.*;
+import cl.awakelab.proyectofinal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,20 +180,67 @@ public class AdminController {
     }
 
 
+    //CRUD DE PAGOS
 
-    @GetMapping({"/pagos"})
-    public String verpagos() {
-        return "pagos";
+    @Autowired
+    private IPagoService servicePago;
+
+   @GetMapping({"/verpagos"})
+    public ModelAndView verpagos() {
+        ModelAndView model = new ModelAndView();
+        List<Pago> pagos = new ArrayList<Pago>();
+        pagos = servicePago.listar();
+        model.addObject("pagos", pagos);
+        model.setViewName("verpagos");
+        return model;
     }
 
-    @GetMapping({"/accidentabilidad"})
-    public String veraccidentabilidad() {
-        return "accidentabilidad";
+    @GetMapping("/nuevopago")
+    public ModelAndView nuevoPago(){
+        ModelAndView model = new ModelAndView();
+        List<Pago> pagos = new ArrayList<Pago>();
+        pagos = servicePago.listar();
+        model.addObject("pagos", pagos);
+        model.addObject("clientes", serviceCliente.listar());
+        model.setViewName("nuevopago");
+        return model;
     }
 
-    @GetMapping({"/actividad"})
+    @PostMapping("/crearpago")
+    public ModelAndView crearPago(@ModelAttribute("pago") PagoDTO pago){
+        ModelAndView model = new ModelAndView();
+        Pago pr = new Pago();
+
+        pr.setIdPago(pago.getIdPago());
+        pr.setDescripcion(pago.getDescripcion());
+        pr.setMonto(pago.getMonto());
+        pr.setFecha(pago.getFecha());
+        pr.setCliente(pago.getCliente());
+        servicePago.registrar(pr);
+
+        List<Pago> pagos = new ArrayList<Pago>();
+        pagos = servicePago.listar();
+        model.addObject("pagos", pagos);
+        model.setViewName("verpagos");
+        return model;
+    }
+
+    //CRUD DE ACCIDENTES
+
+    @Autowired
+    private IAccidenteService serviceAccidente;
+
+    @GetMapping({"/veraccidentabilidad"})
+    public ModelAndView veraccidentabilidad() {
+       ModelAndView model = new ModelAndView();
+       List<Accidente> accidentes = new ArrayList<Accidente>();
+       accidentes = serviceAccidente.listar();
+       return model;
+    }
+
+    @GetMapping({"/veractividad"})
     public String veractividad() {
-        return "actividad";
+        return "veractividad";
     }
 
 

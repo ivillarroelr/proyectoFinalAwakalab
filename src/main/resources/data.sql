@@ -37,3 +37,9 @@ INSERT INTO users
 
  INSERT INTO visita
  VALUES(1,'visita1', '2016-06-22 19:10:25-07', '2016-06-22 19:10:25-07', 'usuario', 'profesional');
+
+ INSERT INTO pago
+ VALUES(1, 'pago 1', '2016-06-22', 12000, 'usuario');
+
+ INSERT INTO accidente
+ VALUES(1, 'accidente 1', '2016-06-22', 'usuario');

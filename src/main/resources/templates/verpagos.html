@@ -20,32 +20,35 @@
         <div class="container-fluid">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/vercliente}">VER CLIENTES</a>
+                    <a class="nav-link active" th:href="@{/verpagos}">VER PAGOS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/nuevocliente}">NUEVO CLIENTE</a>
+                    <a class="nav-link" th:href="@{/nuevopago}">NUEVO PAGO</a>
                 </li>
             </ul>
+
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th> Nombre </th>
-                    <th> Apellido </th>
-                    <th> Rut </th>
+                    <th> Id </th>
+                    <th> Monto </th>
+                    <th> Fecha </th>
+                    <th> Cliente </th>
                     <th> Editar </th>
                     <th> Eliminar </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${clientes.isEmpty()}">
-                    <td colspan="8"> No hay clientes registrados </td>
+                <tr th:if="${pagos.isEmpty()}">
+                    <td colspan="8"> No hay pagos registrados </td>
                 </tr>
-                <tr th:each="cliente : ${clientes}">
-                    <td><span th:text="${cliente.getUsuario().getNombre()}"></span></td>
-                    <td><span th:text="${cliente.getUsuario().getApellido()}"></span></td>
-                    <td><span th:text="${cliente.getUsuario().getRut()}"></span></td>
-                    <td><a class="btn btn-warning" role="button" th:href="@{/editarcl/{username}(username=${cliente.getUsuario().getUsername()})}">Editar</a></td>
-                    <td><form th:method="delete" action="#" th:action="@{'/borrarcliente/{username}'(username=${cliente.getUsuario().getUsername()})}">
+                <tr th:each="pago : ${pagos}">
+                    <td><span th:text="${pago.getIdPago()}"></span></td>
+                    <td><span th:text="${pago.getMonto()}"></span></td>
+                    <td><span th:text="${pago.getFecha()}"></span></td>
+                    <td><span th:text="${pago.getCliente().getUsername()}"></span></td>
+                    <td><a class="btn btn-warning" role="button" >Editar</a></td>
+                    <td><form th:method="delete" action="#">
                         <input type="hidden" name="_method" value="delete" />
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form></td>
