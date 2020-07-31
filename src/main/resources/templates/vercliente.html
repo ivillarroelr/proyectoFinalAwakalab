@@ -18,27 +18,40 @@
         </nav>
 
         <div class="container-fluid">
-            <h1 class="mt-4">VERCLIENTE</h1>
-            <p>Informacion relacionada al proyecto</p>
-            <table class="table table-sm table-hover">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/vercliente}">VER CLIENTES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/nuevocliente}">NUEVO CLIENTE</a>
+                </li>
+            </ul>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                 <tr>
-                    <td>Desarrollador Frontend</td>
-                    <td>Cristian Escamilla</td>
+                    <th> Nombre </th>
+                    <th> Apellido </th>
+                    <th> Rut </th>
+                    <th> Editar </th>
+                    <th> Eliminar </th>
                 </tr>
-                <tr>
-                    <td>Desarrollador Frontend</td>
-                    <td>Juan Gonzalez</td>
+                </thead>
+                <tbody>
+                <tr th:if="${clientes.isEmpty()}">
+                    <td colspan="8"> No hay clientes registrados </td>
                 </tr>
-                <tr>
-                    <td>Desarrollador Backend</td>
-                    <td>Katherine Ramos</td>
+                <tr th:each="cliente : ${clientes}">
+                    <td><span th:text="${cliente.getUsuario().getNombre()}"></span></td>
+                    <td><span th:text="${cliente.getUsuario().getApellido()}"></span></td>
+                    <td><span th:text="${cliente.getUsuario().getRut()}"></span></td>
+                    <td><a class="btn btn-warning" role="button" th:href="@{/editarcl/{username}(username=${cliente.getUsuario().getUsername()})}">Editar</a></td>
+                    <td><form th:method="delete" action="#" th:action="@{'/borrarcliente/{username}'(username=${cliente.getUsuario().getUsername()})}">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form></td>
                 </tr>
-                <tr>
-                    <td>Desarrollador Backend</td>
-                    <td>Ivan Villarroel</td>
-                </tr>
+                </tbody>
             </table>
-            <h3>Aseguradora de Riesgos Laborales</h3>
         </div>
 
     </div>
