@@ -113,7 +113,7 @@ public class AdminController {
         }
         serviceUsuario.modificar(usuario);
         model.addAttribute("profesionales", serviceProfesional.listar());
-        return "redirect:/index";
+        return "redirect:/verprofesional";
     }
 
     @DeleteMapping("/borrarprofesional/{username}")
