@@ -1,6 +1,7 @@
 package cl.awakelab.proyectofinal.controller;
 
 import cl.awakelab.proyectofinal.dto.AccidenteDTO;
+import cl.awakelab.proyectofinal.dto.ActividadDTO;
 import cl.awakelab.proyectofinal.dto.PagoDTO;
 import cl.awakelab.proyectofinal.dto.UsersDTO;
 import cl.awakelab.proyectofinal.model.*;
@@ -84,26 +85,21 @@ public class ClienteController {
     }
 
     @PostMapping("/crearasesoria")
-    public ModelAndView crearAsesoria(@ModelAttribute("actividad") UsersDTO cliente){
+    public String crearAsesoria(@ModelAttribute("actividad") ActividadDTO actividad){
         ModelAndView model = new ModelAndView();
-        Users pr = new Users();
-        Cliente cl = new Cliente();
-        pr.setUsername(cliente.getUsername());
-        pr.setApellido(cliente.getApellido());
-        pr.setEnabled(cliente.getEnabled());
-        pr.setNombre(cliente.getNombre());
-        pr.setPassword(cliente.getPassword());
-        pr.setRut(cliente.getRut());
-        pr.setTipoUsuario(cliente.getTipoUsuario());
-        serviceUsuario.registrar(pr);
-        cl.setUsername(cliente.getUsername());
-        cl.setUsuario(pr);
-        serviceCliente.registrar(cl);
-        List<Cliente> clientes = new ArrayList<Cliente>();
-        clientes = serviceCliente.listar();
-        model.addObject("clientes", clientes);
-        model.setViewName("vercliente");
-        return model;
+        Actividad pr = new Actividad();
+        Users cliente = serviceUsuario.leerPorUsername(actividad.getCliente());
+        Users profesional = serviceUsuario.leerPorUsername(actividad.getProfesional());
+
+        pr.setIdActividad(actividad.getIdActividad());
+        pr.setFechaActividad(actividad.getFechaActividad());
+        pr.setDescripcion(actividad.getDescripcion());
+        pr.setCliente(cliente.getCliente());
+        pr.setProfesional(profesional.getProfesional());
+
+        serviceActividad.registrar(pr);
+
+        return "redirect:/indexcliente";
     }
 
 
