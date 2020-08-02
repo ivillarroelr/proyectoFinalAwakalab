@@ -1,6 +1,6 @@
 package cl.awakelab.proyectofinal.model;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ public class Accidente {
 	private int idAccidente;
 	
 	@Column(name = "fecha", nullable = true)
-	private LocalDateTime fechaVisita;
+	private Timestamp fechaAccidente;
 	
 	@Column(name = "descripcion", nullable = true)
     private String descripcion;
@@ -35,12 +35,12 @@ public class Accidente {
         this.idAccidente = idAccidente;
     }
 
-    public LocalDateTime getFechaVisita() {
-        return fechaVisita;
+    public Timestamp getFechaAccidente() {
+        return fechaAccidente;
     }
 
-    public void setFechaVisita(LocalDateTime fechaVisita) {
-        this.fechaVisita = fechaVisita;
+    public void setFechaVisita(Timestamp fechaVisita) {
+        this.fechaAccidente = fechaVisita;
     }
 
     public String getDescripcion() {

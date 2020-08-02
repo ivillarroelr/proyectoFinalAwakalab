@@ -1,6 +1,6 @@
 package cl.awakelab.proyectofinal.model;
 
-import java.sql.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.ForeignKey;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="pago")
@@ -24,7 +26,7 @@ public class Pago {
     private int monto;
 
     @Column(name="fecha")
-    private Date fecha;
+    private Timestamp fecha;
 
     @ManyToOne
     @JoinColumn(name="cliente", nullable=false, foreignKey = @ForeignKey(name="FK_actividad_cliente"))
@@ -54,11 +56,11 @@ public class Pago {
         this.monto = monto;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 

@@ -1,6 +1,7 @@
 package cl.awakelab.proyectofinal.model;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Visita {
 	private int idVisita;
 	
 	@Column(name = "fecha", nullable = true)
-	private LocalDateTime fecha;
+	private Timestamp fecha;
 	
 	@Column(name = "descripcion", nullable = true)
 	private String descripcion;
@@ -30,22 +31,6 @@ public class Visita {
     @ManyToOne
     @JoinColumn(name="profesional", nullable=false, foreignKey = @ForeignKey(name="FK_actividad_profesional"))
     private Profesional profesional;
-	
-	@Column(name = "hora", nullable = true)
-	private String hora;
-
-	public Visita() {
-		super();
-	}
-
-
-	public Visita(int idVisita, LocalDateTime fecha, String descripcion) {
-		super();
-		this.idVisita = idVisita;
-		this.fecha = fecha;
-		this.descripcion = descripcion;
-	}
-
 
 	public int getIdVisita() {
 		return idVisita;
@@ -57,12 +42,12 @@ public class Visita {
 	}
 
 
-	public LocalDateTime getFecha() {
+	public Timestamp getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
 
@@ -91,15 +76,5 @@ public class Visita {
 	public void setProfesional(Profesional profesional) {
 		this.profesional = profesional;
 	}
-
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
-
-	
 	
 }

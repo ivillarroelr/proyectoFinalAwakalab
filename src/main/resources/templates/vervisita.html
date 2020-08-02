@@ -20,27 +20,29 @@
         <div class="container-fluid">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/veraccidentabilidad}">VER ACCIDENTES</a>
+                    <a class="nav-link active" th:href="@{/vervisita}">VER VISITAS</a>
                 </li>
             </ul>
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th> Id Accidente</th>
+                    <th> Id Visita</th>
                     <th> Descripcion </th>
                     <th> Fecha </th>
                     <th> Cliente </th>
+                    <th> Profesional </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${accidentes.isEmpty()}">
-                    <td colspan="8"> No hay accidentes registrados </td>
+                <tr th:if="${visitas.isEmpty()}">
+                    <td colspan="8"> No hay visitas registradas </td>
                 </tr>
-                <tr th:each="accidente : ${accidentes}">
-                    <td><span th:text="${accidente.getIdAccidente()}"></span></td>
-                    <td><span th:text="${accidente.getDescripcion()}"></span></td>
-                    <td><span th:text="${accidente.getFechaAccidente()}"></span></td>
-                    <td><span th:text="${accidente.getCliente().getUsername()}"></span></td>
+                <tr th:each="visita : ${visitas}">
+                    <td><span th:text="${visita.getIdVisita()}"></span></td>
+                    <td><span th:text="${visita.getDescripcion()}"></span></td>
+                    <td><span th:text="${visita.getFecha()}"></span></td>
+                    <td><span th:text="${visita.getCliente().getUsername()}"></span></td>
+                    <td><span th:text="${visita.getProfesional().getUsername()}"></span></td>
                 </tr>
                 </tbody>
             </table>
@@ -56,5 +58,5 @@
     <script th:src="@{js/bootstrap.min.js}"></script>
     <script th:src="@{js/custom.js}"></script>
 
-    </div>
+</div>
 </html>

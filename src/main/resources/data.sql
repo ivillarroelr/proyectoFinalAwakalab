@@ -24,10 +24,10 @@ INSERT INTO authorities_users(username, id_authority)
  VALUES('cristiane',1);
 
  INSERT INTO users
- VALUES('usuario','apellido', 'true', 'kathy', 'elefante', '18378858-2', 'admin');
+ VALUES('usuario','apellido', true, 'kathy', 'elefante', '18378858-2', 'admin');
 
 INSERT INTO users
- VALUES('profesional','apellido2', 'true', 'manu', 'ironman', '18504304-8', 'admin');
+ VALUES('profesional','apellido2', true, 'manu', 'ironman', '18504304-8', 'admin');
 
  INSERT INTO cliente
  VALUES('usuario');
@@ -36,10 +36,13 @@ INSERT INTO users
  VALUES('profesional');
 
  INSERT INTO visita
- VALUES(1,'visita1', '2016-06-22 19:10:25-07', '2016-06-22 19:10:25-07', 'usuario', 'profesional');
+ VALUES(1,'visita1', '2016-06-22 19:10:25-07', 'usuario', 'profesional');
 
  INSERT INTO pago
- VALUES(1, 'pago 1', '2016-06-22', 12000, 'usuario');
+ VALUES(1, 'pago 1', '2004-10-19 10:23:54', 12000, 'usuario');
 
  INSERT INTO accidente
- VALUES(1, 'accidente 1', '2016-06-22', 'usuario');
+ VALUES(1, 'accidente 1', '2004-10-19 10:23:54', 'usuario');
+
+ INSERT INTO actividad
+ VALUES(1, 'actividad 1', '2016-06-22 19:10:25', 'usuario', 'profesional');

@@ -1,9 +1,9 @@
 package cl.awakelab.proyectofinal.dto;
 
-import cl.awakelab.proyectofinal.model.Cliente;
+
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class PagoDTO implements Serializable {
@@ -14,9 +14,9 @@ public class PagoDTO implements Serializable {
 
     private int monto;
 
-    private Date fecha;
+    private Timestamp fecha;
 
-    private Cliente cliente;
+    private String cliente;
 
     public int getIdPago() {
         return idPago;
@@ -42,19 +42,19 @@ public class PagoDTO implements Serializable {
         this.monto = monto;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
-    public Cliente getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 

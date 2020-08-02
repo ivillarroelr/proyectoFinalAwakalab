@@ -18,27 +18,34 @@
         </nav>
 
         <div class="container-fluid">
-            <h1 class="mt-4">ACTIVIDADES</h1>
-            <p>Informacion relacionada al proyecto</p>
-            <table class="table table-sm table-hover">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/veractividad}">VER ACTIVIDADES</a>
+                </li>
+            </ul>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                 <tr>
-                    <td>Desarrollador Frontend</td>
-                    <td>Cristian Escamilla</td>
+                    <th> Id Accidente</th>
+                    <th> Descripcion </th>
+                    <th> Fecha </th>
+                    <th> Cliente </th>
+                    <th> Profesional </th>
                 </tr>
-                <tr>
-                    <td>Desarrollador Frontend</td>
-                    <td>Juan Gonzalez</td>
+                </thead>
+                <tbody>
+                <tr th:if="${actividades.isEmpty()}">
+                    <td colspan="8"> No hay actividades registradas </td>
                 </tr>
-                <tr>
-                    <td>Desarrollador Backend</td>
-                    <td>Katherine Ramos</td>
+                <tr th:each="actividad : ${actividades}">
+                    <td><span th:text="${actividad.getIdActividad()}"></span></td>
+                    <td><span th:text="${actividad.getDescripcion()}"></span></td>
+                    <td><span th:text="${actividad.getFechaActividad()}"></span></td>
+                    <td><span th:text="${actividad.getCliente().getUsername()}"></span></td>
+                    <td><span th:text="${actividad.getProfesional().getUsername()}"></span></td>
                 </tr>
-                <tr>
-                    <td>Desarrollador Backend</td>
-                    <td>Ivan Villarroel</td>
-                </tr>
+                </tbody>
             </table>
-            <h3>Aseguradora de Riesgos Laborales</h3>
         </div>
 
     </div>
@@ -51,5 +58,5 @@
     <script th:src="@{js/bootstrap.min.js}"></script>
     <script th:src="@{js/custom.js}"></script>
 
-    </body>
+    </div>
 </html>

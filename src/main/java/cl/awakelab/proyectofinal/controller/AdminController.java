@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -210,12 +209,13 @@ public class AdminController {
     public ModelAndView crearPago(@ModelAttribute("pago") PagoDTO pago){
         ModelAndView model = new ModelAndView();
         Pago pr = new Pago();
+        Users usuario = serviceUsuario.leerPorUsername(pago.getCliente());
 
         pr.setIdPago(pago.getIdPago());
         pr.setDescripcion(pago.getDescripcion());
         pr.setMonto(pago.getMonto());
         pr.setFecha(pago.getFecha());
-        pr.setCliente(pago.getCliente());
+        pr.setCliente(usuario.getCliente());
         servicePago.registrar(pr);
 
         List<Pago> pagos = new ArrayList<Pago>();
@@ -225,24 +225,75 @@ public class AdminController {
         return model;
     }
 
+    @GetMapping("/editarp/{idPago}")
+    public String editarPago(@PathVariable("idPago") Integer idPago, Model model){
+       Pago pago = servicePago.leerPorId(idPago);
+       model.addAttribute("pago", pago);
+       return "editarpago";
+    }
+
+    @PostMapping("/editarpago/{idPago}")
+    public String updatePago(@PathVariable("idPago") Integer idPago, @Valid Pago pago,
+                                    BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            pago.setIdPago(idPago);
+            return "redirect:/verpagos";
+        }
+        servicePago.modificar(pago);
+        model.addAttribute("pagos", servicePago.listar());
+        return "redirect:/verpagos";
+    }
+
+    @DeleteMapping("/borrarpago/{idPago}")
+    public String eliminarPago(@PathVariable("idPago") Integer idPago){
+        servicePago.eliminar(idPago);
+        return "redirect:/verpagos";
+    }
+
+
     //CRUD DE ACCIDENTES
 
     @Autowired
     private IAccidenteService serviceAccidente;
 
     @GetMapping({"/veraccidentabilidad"})
-    public ModelAndView veraccidentabilidad() {
+    public ModelAndView verAccidentabilidad() {
        ModelAndView model = new ModelAndView();
        List<Accidente> accidentes = new ArrayList<Accidente>();
        accidentes = serviceAccidente.listar();
+        model.addObject("accidentes", accidentes);
+        model.setViewName("veraccidentabilidad");
        return model;
     }
 
+
+    //CRUD DE ACTIVIDADES
+    @Autowired
+    private IActividadService serviceActividad;
+
     @GetMapping({"/veractividad"})
-    public String veractividad() {
-        return "veractividad";
+    public ModelAndView verActividad() {
+        ModelAndView model = new ModelAndView();
+        List<Actividad> actividades = new ArrayList<Actividad>();
+        actividades = serviceActividad.listar();
+        model.addObject("actividades", actividades);
+        model.setViewName("veractividad");
+        return model;
     }
 
+    //CRUD DE VISITAS
+    @Autowired
+    private IVisitaService serviceVisita;
+
+    @GetMapping({"/vervisita"})
+    public ModelAndView verVisita() {
+        ModelAndView model = new ModelAndView();
+        List<Visita> visitas = new ArrayList<Visita>();
+        visitas = serviceVisita.listar();
+        model.addObject("visitas", visitas);
+        model.setViewName("vervisita");
+        return model;
+    }
 
 
 }
