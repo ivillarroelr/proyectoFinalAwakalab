@@ -1,15 +1,8 @@
 <!DOCTYPE html>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="/fragments/header :: head">
+    <script th:src="@{js/jquery.min.js}"></script>
 </head>
 
 <body>
@@ -18,62 +11,72 @@
     <!-- Sidebar -->
     <div th:replace="/fragments/sidebarp :: div">
     </div>
-    
+
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        
-      <!-- Navbar -->
-      <nav th:replace="/fragments/navbar :: nav">
-      </nav>
 
-      <div class="container-fluid"> <!-- BODY CONTAINER -->
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">VER VISITAS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/indexprofesional}">PLANIFICAR VISITA</a>
-            </li>
-        </ul>   
-          
-        <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th> ID Visita </th>
-                    <th> Fecha Visita </th>
-                    <th> Hora Visita </th>
-                    <th> Nombre Cliente </th>
-                    <th> Descripción </th>
-                </tr>
-            </thead>
-            <tbody>
-          <tr th:if="${visitas.isEmpty()}">
-                    <td colspan="8"> No hay visitas registradas </td>
-                </tr>
-                <tr th:each="visita : ${visitas}">
-                    <td><span th:text="${visita.getIdVisita()}"></span></td>
-                    <td><span th:text="${visita.getHora()}"></span></td>
-                    <td><span th:text="${visita.getFecha()}"></span></td>
-                    <td><span th:text="${visita.getCliente().getUsuario().getNombre()}"></span></td>
-                    <td><span th:text="${visita.getDescripcion()}"></span></td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
+        <!-- Navbar -->
+        <nav th:replace="/fragments/navbar :: nav">
+        </nav>
+
+        <div class="container-fluid">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/visita}">AGENDAR VISITA</a>
+                </li>
+            </ul>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col col-md-1"></div>
+                    <div class="col col-md-10">
+                        <form method="post" th:action="@{/crearvisita}">
+                            <div class="form-group">
+                                <label for="idVisita">Id visita</label>
+                                <input type="number" class="form-control" id="idVisita" name="idVisita">
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha">Fecha y Hora</label>
+                                <input type="text" class="form-control" id="fecha" name="fecha">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripcion</label>
+                                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                            </div>
+                            <div class="form-group">
+                                <label for="cliente">Nombre cliente</label>
+                                <select class="form-control" id="cliente" name="cliente" >
+                                    <option th:each="cliente : ${clientes}"
+                                            th:value="${cliente.getUsername()}"
+                                            th:text="${cliente.getUsername()}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="profesional">Nombre profesional</label>
+                                <select class="form-control" id="profesional" name="profesional" >
+                                    <option th:each="profesional : ${profesionales}"
+                                            th:value="${profesional.getUsername()}"
+                                            th:text="${profesional.getUsername()}"></option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-success mt-3">Enviar</button>
+                        </form>
+                    </div>
+                    <div class="col col-md-1"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /#page-content-wrapper -->
 
-  </div>
-  <!-- /#wrapper -->
-  <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+</div>
+<!-- /#wrapper -->
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
     <input hidden type="submit" value="Sign Out"/>
- </form> 
-
-  <!-- Bootstrap core JavaScript -->
-  <script th:src="@{js/jquery.min.js}"></script>
-  <script th:src="@{js/bootstrap.min.js}"></script>
-  <script th:src="@{js/sweetalert2.js}"></script>
-  <script th:src="@{js/custom.js}"></script>
-
+</form>
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{js/jquery.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/sweetalert2.js}"></script>
+<script th:src="@{js/custom.js}"></script>
 </body>
 </html>
