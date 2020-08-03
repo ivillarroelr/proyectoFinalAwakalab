@@ -46,11 +46,11 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         }
 
         if (esAdmin(roles)) {
-            url = "/ADMIN";
+            url = "/indexadministrador";
         } else if (esProfesional(roles)) {
-            url = "/PROFESIONAL";
+            url = "/indexprofesional";
         } else if (esCliente(roles)) {
-            url = "/CLIENTE";
+            url = "/indexcliente";
         } else {
             url = "/loginerror";
         }
