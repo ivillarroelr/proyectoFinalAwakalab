@@ -73,7 +73,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     }
 
     private boolean esAdmin(List<String> roles) {
-        if (roles.contains("ADMIN")) {
+        if (roles.contains("ADMINISTRADOR")) {
             return true;
         }
         return false;
