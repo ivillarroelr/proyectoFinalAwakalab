@@ -295,5 +295,10 @@ public class AdminController {
         return model;
     }
 
+    @GetMapping({"/error"})
+    public String error() {
+        return "error";
+    }
+
 
 }
