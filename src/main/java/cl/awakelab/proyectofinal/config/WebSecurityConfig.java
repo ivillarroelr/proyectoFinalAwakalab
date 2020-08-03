@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
+    @Autowired
+    CustomSuccessHandler customSuccessHandler;
     //Necesario para evitar que la seguridad se aplique a los resources
     //Como los css, imagenes y javascripts
     String[] resources = new String[]{
@@ -29,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(resources).permitAll()
                 .antMatchers("/**").hasAnyAuthority("ADMINISTRADOR")
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+                .formLogin().loginPage("/login").successHandler(customSuccessHandler)
                 .defaultSuccessUrl("/index").failureUrl("/loginerror")
                 .usernameParameter("username")
                 .passwordParameter("password")
