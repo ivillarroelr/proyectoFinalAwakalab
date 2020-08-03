@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers(resources).permitAll()
-                .antMatchers("/**").hasAnyAuthority("ADMINISTRADOR")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").successHandler(customSuccessHandler)
                 .failureUrl("/loginerror")
